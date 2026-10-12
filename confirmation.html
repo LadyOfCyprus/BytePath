@@ -15,7 +15,7 @@
   <!-- Top Persistent Header -->
   <header class="top-header">
     <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
-      <div class="brand-circle"></div>
+      <div class="brand-circle">B</div>
       <span>Bytepath</span>
     </a>
     <ul class="nav-links">
@@ -81,15 +81,15 @@
     </div>
     <div class="success-icon-badge">&#10003;</div>
     <h1 style="font-family: var(--font-serif); font-size: 2.8rem; font-weight: 600; margin-bottom: 0.5rem;">Application submitted</h1>
-    <p style="color: var(--color-text-muted); font-size: 1.1rem;">Your application for Product Design Intern at Northstar Digital Labs has been received.</p>
+    <p style="color: var(--color-text-muted); font-size: 1.1rem;" id="confirmationSubtitle">Your application for Product Design Intern at Northstar Digital Labs has been received.</p>
 
     <!-- Official Application Receipt Card -->
     <div class="receipt-box">
       <div style="display: flex; justify-content: space-between; align-items: flex-start;">
         <div>
           <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase;">Application Receipt</span>
-          <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin: 0.35rem 0 0.15rem;">Product Design Intern</h3>
-          <p style="font-size: 0.88rem; color: var(--color-text-muted);">Northstar Digital Labs &middot; Makati City &middot; Hybrid</p>
+          <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin: 0.35rem 0 0.15rem;" id="receiptJobTitle">Product Design Intern</h3>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted);" id="receiptCompanyMeta">Northstar Digital Labs &middot; Makati City &middot; Hybrid</p>
         </div>
         <span class="badge-paid">Submitted</span>
       </div>
@@ -101,11 +101,11 @@
         </div>
         <div>
           <span style="font-size: 0.8rem; color: var(--color-text-muted); display: block;">Application reference</span>
-          <strong style="font-size: 0.95rem;">BP-2026-01428</strong>
+          <strong style="font-size: 0.95rem;" id="receiptRef">BP-2026-01428</strong>
         </div>
         <div>
           <span style="font-size: 0.8rem; color: var(--color-text-muted); display: block;">Submitted</span>
-          <strong style="font-size: 0.95rem;">October 12, 2026</strong>
+          <strong style="font-size: 0.95rem;" id="receiptDate">October 12, 2026</strong>
         </div>
         <div>
           <span style="font-size: 0.8rem; color: var(--color-text-muted); display: block;">Status</span>
@@ -122,7 +122,7 @@
         <div class="timeline-num">1</div>
         <div>
           <strong style="font-size: 0.95rem;">The recruitment team reviews your application.</strong>
-          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.2rem;">Northstar Digital Labs will assess your experience, interests, and availability.</p>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 0.2rem;" id="timelineCompanyDesc">Northstar Digital Labs will assess your experience, interests, and availability.</p>
         </div>
       </div>
 
@@ -171,5 +171,10 @@
   </footer>
 
   <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initConfirmationPage();
+    });
+  </script>
 </body>
 </html>

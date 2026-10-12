@@ -15,7 +15,7 @@
   <!-- Top Persistent Header -->
   <header class="top-header">
     <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
-      <div class="brand-circle"></div>
+      <div class="brand-circle">B</div>
       <span>Bytepath</span>
     </a>
     <ul class="nav-links">
@@ -78,12 +78,12 @@
   <div class="wizard-container">
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
       <a href="dashboard.html" class="back-btn-link">&larr; Back to dashboard</a>
-      <a href="apply-step2.html" class="back-btn-link">&larr; Back to experience</a>
+      <a href="apply-step2.html" class="back-btn-link" id="backToStep2">&larr; Back to experience</a>
     </div>
     <div style="margin: 1rem 0 0.5rem;">
       <span class="hero-eyebrow">Application</span>
       <h1 style="font-family: var(--font-serif); font-size: 2.4rem; font-weight: 600;">Review your application</h1>
-      <p style="color: var(--color-text-muted);">Check your information before sending it to Northstar Digital Labs.</p>
+      <p style="color: var(--color-text-muted);" id="reviewJobSubtitle">Check your information before sending it to Northstar Digital Labs.</p>
     </div>
 
     <!-- Stepper Navigation -->
@@ -219,14 +219,14 @@
       <!-- Consent Checkbox -->
       <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 2rem; display: flex; align-items: flex-start; gap: 0.75rem;">
         <input type="checkbox" id="consentCheckbox" checked style="accent-color: var(--color-primary); width: 18px; height: 18px; margin-top: 3px; cursor: pointer;">
-        <label for="consentCheckbox" style="font-size: 0.88rem; color: var(--color-text-body); cursor: pointer; line-height: 1.4;">
+        <label for="consentCheckbox" id="consentLabel" style="font-size: 0.88rem; color: var(--color-text-body); cursor: pointer; line-height: 1.4;">
           I confirm that this information is accurate and consent to sharing this application with Northstar Digital Labs for recruitment purposes.
         </label>
       </div>
 
       <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--color-border);">
         <div style="display: flex; gap: 0.75rem;">
-          <a href="apply-step2.html" class="btn-secondary">&larr; Back to experience</a>
+          <a href="apply-step2.html" class="btn-secondary" id="reviewBackBtn">&larr; Back to experience</a>
           <a href="dashboard.html" class="btn-secondary">Save as draft &amp; exit</a>
         </div>
         <button type="button" class="btn-primary" style="height: 48px; padding: 0 2rem; font-size: 1rem;" onclick="handleFinalSubmission()">

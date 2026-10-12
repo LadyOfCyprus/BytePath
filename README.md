@@ -2,7 +2,7 @@
 **Course / Laboratory Activity:** Human-Computer Interaction (HCI) — High-Fidelity Interactive Prototype  
 **Project Name:** Bytepath (IT Student Internship Portal)  
 **Primary User Persona:** Mika Santos (3rd Year BS Information Technology Student, Metro City University)  
-**Interactive Prototype:** Open `index.html` in any modern web browser (Edge, Chrome, Firefox)  
+**Interactive Prototype:** Open `index.html` or `login.html` in any modern web browser (Edge, Chrome, Firefox). Fresh visitors land directly on `login.html` as the entry landing page.  
 
 ---
 
@@ -16,8 +16,8 @@ The project has been separated into modular, dedicated pages sharing a unified d
 | **Auth** | **Create Account / Register** | [`register.html`](file:///c:/BytePath/register.html) | Split-screen student registration, university verification, degree selection, password confirmation, and automatic workspace launch. |
 | **Screen 1** | **Home / Landing Page** | [`index.html`](file:///c:/BytePath/index.html) | Marketing hero, quick search bar, featured internships, and entry to student workspace. |
 | **Screen 2** | **Student Dashboard** | [`dashboard.html`](file:///c:/BytePath/dashboard.html) | Metric stats (3 saved, 2 submitted, 1 draft), verified profile readiness banner, recent activity. |
-| **Screen 3** | **Browse Internships** | [`browse.html`](file:///c:/BytePath/browse.html) | Category & location search filters, paid opportunities filter, and job listing cards. |
-| **Screen 4** | **Internship Details** | [`details.html`](file:///c:/BytePath/details.html) | Full role specification, ₱10,000 monthly allowance, 18-day deadline alert, and "Apply now" CTA. |
+| **Screen 3** | **Browse Internships** | [`browse.html`](file:///c:/BytePath/browse.html) | Expanded 24-job IT/CS catalog across 6 categories, location & work setup filters, paid opportunities filter, and independent per-job application badges. |
+| **Screen 4** | **Internship Details** | [`details.html`](file:///c:/BytePath/details.html) | Dynamic per-role specification, company information, allowance, deadline alert, and context-aware "Apply now" / "View receipt" action CTA. |
 | **Screen 4 (Form)** | **Personal Details (Step 1)** | [`apply-step1.html`](file:///c:/BytePath/apply-step1.html) | Contact information, PDF résumé attachment, auto-save status feedback. |
 | **Screen 4 (Form)** | **Experience & Availability (Step 2)** | [`apply-step2.html`](file:///c:/BytePath/apply-step2.html) | Degree, year level, skill pills, dates, weekly hours, statement of interest. |
 | **Screen 5** | **Review & Submit** | [`apply-review.html`](file:///c:/BytePath/apply-review.html) | Categorized review cards with inline `Edit` links, accuracy declaration consent, submission trigger. |

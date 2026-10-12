@@ -15,7 +15,7 @@
   <!-- Top Persistent Header -->
   <header class="top-header">
     <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
-      <div class="brand-circle"></div>
+      <div class="brand-circle">B</div>
       <span>Bytepath</span>
     </a>
     <ul class="nav-links">
@@ -84,12 +84,12 @@
     <div class="details-split">
       <!-- Main Content Column -->
       <main class="details-main-card">
-        <span class="badge-paid" style="margin-bottom: 0.85rem;">Design &middot; Paid Internship</span>
-        <h1 style="font-family: var(--font-serif); font-size: 2.8rem; font-weight: 600; line-height: 1.15; margin-bottom: 0.25rem;">Product Design Intern</h1>
-        <p style="font-size: 1.05rem; color: var(--color-text-muted); margin-bottom: 2rem;">Northstar Digital Labs &middot; Makati City &middot; Hybrid</p>
+        <span class="badge-paid" style="margin-bottom: 0.85rem;" id="detailsTopBadge">Design &middot; Paid Internship</span>
+        <h1 style="font-family: var(--font-serif); font-size: 2.8rem; font-weight: 600; line-height: 1.15; margin-bottom: 0.25rem;" id="detailsTitle">Product Design Intern</h1>
+        <p style="font-size: 1.05rem; color: var(--color-text-muted); margin-bottom: 2rem;" id="detailsMeta">Northstar Digital Labs &middot; Makati City &middot; Hybrid</p>
 
         <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem;">About the internship</h3>
-        <p style="color: var(--color-text-body); line-height: 1.6; margin-bottom: 1rem;">
+        <p style="color: var(--color-text-body); line-height: 1.6; margin-bottom: 1rem;" id="detailsAbout">
           Work with our product team to research user needs and design clear, accessible interfaces for web-based services.
         </p>
         <p style="color: var(--color-text-body); line-height: 1.6; margin-bottom: 2rem;">
@@ -97,7 +97,7 @@
         </p>
 
         <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem;">What you'll work on</h3>
-        <ul class="bullet-list">
+        <ul class="bullet-list" id="detailsResponsibilities">
           <li>Create wireframes and high-fidelity interfaces.</li>
           <li>Support usability testing and summarize findings.</li>
           <li>Maintain reusable Figma patterns and design system components.</li>
@@ -105,7 +105,7 @@
         </ul>
 
         <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem;">What you'll bring</h3>
-        <ul class="bullet-list">
+        <ul class="bullet-list" id="detailsRequirements">
           <li>Enrolled in IT, Computer Science, Multimedia Arts, or a related undergraduate program.</li>
           <li>Familiar with Figma and user-centered design principles.</li>
           <li>Able to explain design decisions clearly.</li>
@@ -134,32 +134,34 @@
 
       <!-- Sticky Sidebar Column -->
       <aside class="details-sidebar-card">
-        <span class="badge-paid">Paid Internship</span>
-        <h3 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600; margin: 0.6rem 0 0.25rem;">Product Design Intern</h3>
-        <p style="font-size: 0.88rem; color: var(--color-text-muted);">Northstar Digital Labs</p>
+        <span class="badge-paid" id="detailsSidebarPaidBadge">Paid Internship</span>
+        <h3 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600; margin: 0.6rem 0 0.25rem;" id="detailsSidebarTitle">Product Design Intern</h3>
+        <p style="font-size: 0.88rem; color: var(--color-text-muted);" id="detailsSidebarCompany">Northstar Digital Labs</p>
 
-        <div style="margin: 1.25rem 0; font-size: 0.9rem; line-height: 1.7; color: var(--color-text-body);">
+        <div style="margin: 1.25rem 0; font-size: 0.9rem; line-height: 1.7; color: var(--color-text-body);" id="detailsSidebarMeta">
           <div>&#10003; Makati City &middot; Hybrid</div>
           <div>&#10003; <strong>&#8369;10,000 monthly allowance</strong></div>
           <div>&#10003; June&ndash;September 2027</div>
           <div>&#10003; Posted October 10, 2026</div>
         </div>
 
-        <div class="badge-deadline">
+        <div class="badge-deadline" id="detailsSidebarDeadline">
           <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; display: block; opacity: 0.85;">Application Deadline</span>
           October 30, 2026 &middot; <strong>18 days left</strong>
         </div>
 
-        <a href="apply-step1.html" class="btn-primary" style="width: 100%; justify-content: center; height: 48px; font-size: 1rem;">
-          Apply now &rarr;
-        </a>
+        <div id="detailsActionSlot">
+          <a href="apply-step1.html" class="btn-primary" id="detailsApplyBtn" style="width: 100%; justify-content: center; height: 48px; font-size: 1rem;">
+            Apply now &rarr;
+          </a>
+        </div>
         <button type="button" class="btn-secondary btn-save-toggle" id="detailsSaveBtn" style="width: 100%; justify-content: center; margin-top: 0.75rem;" onclick="toggleSaveJob('northstar-pdi', event)">
           &#9734; Save opportunity
         </button>
 
-        <div style="margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); font-size: 0.85rem;">
-          <strong>Meet Northstar Digital Labs</strong>
-          <p style="color: var(--color-text-muted); margin-top: 0.25rem; line-height: 1.4;">
+        <div style="margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--color-border); font-size: 0.85rem;" id="detailsAboutCompany">
+          <strong id="detailsAboutCompanyTitle">Meet Northstar Digital Labs</strong>
+          <p style="color: var(--color-text-muted); margin-top: 0.25rem; line-height: 1.4;" id="detailsAboutCompanyDesc">
             A Makati-based digital product team building useful, accessible services. Mentored, project-based learning.
           </p>
         </div>

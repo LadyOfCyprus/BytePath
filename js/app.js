@@ -35,9 +35,10 @@ const defaultState = {
   weeklyHours: '32 hours / week',
   relevantProject: '',
   statement: '',
-  consent: false,
+  consent: true,
   profileCompleted: false, // New accounts must complete their profile first
   isNewAccount: true,
+  isLoggedIn: false,
   submittedApplicationsCount: 0,
   draftApplicationsCount: 0,
   savedInternshipsCount: 0,
@@ -1081,6 +1082,7 @@ function toggleSaveJob(jobId, event) {
 function handleLogout(e) {
   if (e) e.preventDefault();
   if (confirm('Are you sure you want to log out of your student workspace?')) {
+    saveAppState({ isLoggedIn: false });
     showToast('Logging out...', 'info');
     setTimeout(() => {
       window.location.href = 'login.html';
@@ -1191,6 +1193,7 @@ function handleRegisterSubmit(e) {
     resumeDate: 'Not uploaded yet',
     profileCompleted: false, // New account MUST fill profile first
     isNewAccount: true,
+    isLoggedIn: true,
     isSubmitted: false,
     appliedJobIds: [],
     submittedApplicationsCount: 0,
@@ -1220,6 +1223,7 @@ function handleLoginSubmit(e) {
 
   // If user matches existing state and profile is already completed, go to dashboard
   if (existingState.email && existingState.email.toLowerCase() === email.toLowerCase() && existingState.profileCompleted) {
+    saveAppState({ isLoggedIn: true });
     showToast(`Welcome back, ${existingState.firstName || 'Student'}! Loading your workspace...`, 'success');
     setTimeout(() => {
       window.location.href = 'dashboard.html';
@@ -1229,6 +1233,7 @@ function handleLoginSubmit(e) {
 
   // If user matches existing state but profile is incomplete, send to profile
   if (existingState.email && existingState.email.toLowerCase() === email.toLowerCase() && !existingState.profileCompleted) {
+    saveAppState({ isLoggedIn: true });
     showToast(`Welcome back! Please complete your student profile first.`, 'info');
     setTimeout(() => {
       window.location.href = 'profile.html?firstLogin=true';
@@ -1265,6 +1270,7 @@ function handleLoginSubmit(e) {
     resumeDate: 'Not uploaded yet',
     profileCompleted: false, // Must fill profile first!
     isNewAccount: true,
+    isLoggedIn: true,
     isSubmitted: false,
     appliedJobIds: [],
     submittedApplicationsCount: 0,
@@ -1288,6 +1294,7 @@ function handleSocialRegister(provider) {
 
   // If user matches existing state and profile is already completed, go to dashboard
   if (existingState.email && existingState.email.toLowerCase() === email.toLowerCase() && existingState.profileCompleted) {
+    saveAppState({ isLoggedIn: true });
     showToast(`Welcome back, ${existingState.firstName || fName}! Loading your workspace...`, 'success');
     setTimeout(() => {
       window.location.href = 'dashboard.html';
@@ -1319,6 +1326,7 @@ function handleSocialRegister(provider) {
     resumeDate: 'Not uploaded yet',
     profileCompleted: false, // New account MUST complete profile first!
     isNewAccount: true,
+    isLoggedIn: true,
     isSubmitted: false,
     appliedJobIds: [],
     submittedApplicationsCount: 0,
@@ -1605,7 +1613,7 @@ function initDetailsPage() {
 
   if (isApplied) {
     // 1. Inset Applied Status Banner above main card
-    if (mainCard && !existingBanner) {
+    if (mainCard && mainCard.parentNode && !existingBanner) {
       const banner = document.createElement('div');
       banner.id = 'detailsAppliedBanner';
       banner.className = 'applied-status-banner';
@@ -1695,19 +1703,21 @@ function initProfilePage() {
     if (!banner) {
       banner = document.createElement('div');
       banner.id = 'profileOnboardingNotice';
-      banner.className = 'panel-card';
-      banner.style.cssText = 'background: #E6F4EA; border: 1.5px solid #155E4E; padding: 1.5rem; margin-bottom: 1.5rem; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: space-between;';
+      banner.className = 'panel-card profile-onboarding-banner';
       banner.innerHTML = `
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <div style="width: 44px; height: 44px; background: #155E4E; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+        <div class="profile-onboarding-content">
+          <div class="profile-onboarding-icon">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
           </div>
           <div>
-            <h3 style="font-family: var(--font-serif); font-size: 1.25rem; color: #155E4E; margin: 0 0 0.2rem;">Complete Your Student Profile</h3>
-            <p style="font-size: 0.88rem; color: #374151; margin: 0;">Welcome! As a new student account, please fill in your details below before accessing internships and applications.</p>
+            <h3 class="profile-onboarding-title">Complete Your Student Profile</h3>
+            <p class="profile-onboarding-desc">Welcome! As a new student account, please fill in your details below before accessing internships and applications.</p>
           </div>
         </div>
-        <span class="badge-status-neutral" style="background: #FFFFFF; border: 1.5px solid #155E4E; color: #155E4E; font-weight: 700; white-space: nowrap;">Required First Step</span>
+        <span class="badge-required-step">
+          <span class="badge-required-dot" aria-hidden="true"></span>
+          <span>Required First Step</span>
+        </span>
       `;
       const mainCol = document.querySelector('main');
       if (mainCol) mainCol.insertBefore(banner, mainCol.firstChild);
@@ -1758,35 +1768,86 @@ function initProfilePage() {
 
 function renderProfileAvatar() {
   const state = getAppState();
-  const avatarLarge = document.getElementById('profAvatarLarge');
-  if (!avatarLarge) return;
-
   const hasName = state.firstName || state.lastName;
   const fullName = hasName ? `${state.firstName || ''} ${state.lastName || ''}`.trim() : (state.email ? state.email.split('@')[0] : 'Student Profile');
   const firstInitial = (state.firstName || fullName || 'S')[0] || 'S';
   const lastInitial = (state.lastName || '')[0] || (fullName[1] || 'P');
   const initials = `${firstInitial}${lastInitial}`.toUpperCase();
 
-  if (state.avatarDataUrl) {
-    avatarLarge.innerHTML = `
-      <img src="${state.avatarDataUrl}" class="avatar-photo" alt="${fullName}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;">
-      <button type="button" class="avatar-badge-icon" onclick="document.getElementById('profAvatarInput').click()" title="Change profile picture" aria-label="Change photo" style="cursor: pointer; border: none; outline: none; background: var(--color-primary); color: white;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-      </button>
-    `;
-  } else {
-    avatarLarge.innerHTML = `
-      <span>${initials}</span>
-      <button type="button" class="avatar-badge-icon" onclick="document.getElementById('profAvatarInput').click()" title="Upload profile picture" aria-label="Upload photo" style="cursor: pointer; border: none; outline: none; background: var(--color-primary); color: white;">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-      </button>
-    `;
+  // 1. Profile Page Avatar (profAvatarLarge)
+  const avatarLarge = document.getElementById('profAvatarLarge');
+  if (avatarLarge) {
+    if (state.avatarDataUrl) {
+      avatarLarge.innerHTML = `
+        <img src="${state.avatarDataUrl}" class="avatar-photo" alt="${fullName}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;">
+        <button type="button" class="avatar-badge-icon" onclick="document.getElementById('profAvatarInput').click()" title="Change profile picture" aria-label="Change photo" style="cursor: pointer; border: none; outline: none; background: var(--color-primary); color: white;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+        </button>
+      `;
+    } else {
+      avatarLarge.innerHTML = `
+        <span>${initials}</span>
+        <button type="button" class="avatar-badge-icon" onclick="document.getElementById('profAvatarInput').click()" title="Upload profile picture" aria-label="Upload photo" style="cursor: pointer; border: none; outline: none; background: var(--color-primary); color: white;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+        </button>
+      `;
+    }
+  }
+
+  const profUploadBtn = document.getElementById('profUploadBtn');
+  if (profUploadBtn) {
+    profUploadBtn.innerText = state.avatarDataUrl ? 'Change photo' : 'Upload photo';
   }
 
   const removeBtn = document.getElementById('removeAvatarBtn');
   if (removeBtn) {
     removeBtn.style.display = state.avatarDataUrl ? 'inline-flex' : 'none';
   }
+
+  // 2. Resume Builder Profile Portrait Avatar (resAvatarLarge)
+  const resAvatarLarge = document.getElementById('resAvatarLarge');
+  if (resAvatarLarge) {
+    if (state.avatarDataUrl) {
+      resAvatarLarge.innerHTML = `
+        <img src="${state.avatarDataUrl}" class="avatar-photo" alt="${fullName}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;">
+        <button type="button" class="avatar-badge-icon" onclick="triggerResumeAvatarUpload()" title="Change portrait photo" aria-label="Change photo" style="cursor: pointer; border: none; outline: none; background: var(--color-primary); color: white;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+        </button>
+      `;
+    } else {
+      resAvatarLarge.innerHTML = `
+        <span>${initials}</span>
+        <button type="button" class="avatar-badge-icon" onclick="triggerResumeAvatarUpload()" title="Upload portrait photo" aria-label="Upload photo" style="cursor: pointer; border: none; outline: none; background: var(--color-primary); color: white;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+        </button>
+      `;
+    }
+  }
+
+  const resUploadBtn = document.getElementById('resUploadBtn');
+  if (resUploadBtn) {
+    resUploadBtn.innerText = state.avatarDataUrl ? 'Change photo' : 'Upload picture';
+  }
+
+  const resRemoveBtn = document.getElementById('resRemoveAvatarBtn');
+  if (resRemoveBtn) {
+    resRemoveBtn.style.display = state.avatarDataUrl ? 'inline-flex' : 'none';
+  }
+
+  // 3. Settings Avatar (settingsAvatarLarge)
+  const settingsAvatarEl = document.getElementById('settingsAvatarLarge');
+  if (settingsAvatarEl) {
+    if (state.avatarDataUrl) {
+      settingsAvatarEl.innerHTML = `<img src="${state.avatarDataUrl}" alt="${fullName}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;">`;
+    } else {
+      settingsAvatarEl.innerText = initials;
+    }
+  }
+}
+
+function triggerResumeAvatarUpload() {
+  const input = document.getElementById('resAvatarInput');
+  if (input) input.click();
 }
 
 function handleAvatarFileChange(e) {
@@ -1820,7 +1881,20 @@ function handleRemoveAvatar() {
   syncHeaderUser();
   const input = document.getElementById('profAvatarInput');
   if (input) input.value = '';
+  const resInput = document.getElementById('resAvatarInput');
+  if (resInput) resInput.value = '';
   showToast('Profile picture removed. Reverted to initials.', 'info');
+}
+
+function handleRemoveResumeAvatar() {
+  saveAppState({ avatarDataUrl: '' });
+  renderProfileAvatar();
+  syncHeaderUser();
+  const input = document.getElementById('profAvatarInput');
+  if (input) input.value = '';
+  const resInput = document.getElementById('resAvatarInput');
+  if (resInput) resInput.value = '';
+  showToast('Profile portrait photo removed. Reverted to initials.', 'info');
 }
 
 function renderProfileSkillTags() {
@@ -2123,6 +2197,8 @@ function initResumeBuilderPage() {
   if (bio) bio.value = state.bio || state.statement || '';
   if (portfolio) portfolio.value = state.portfolio || '';
   if (linkedin) linkedin.value = state.linkedin || '';
+
+  renderProfileAvatar();
 }
 
 function initReviewScreen() {
@@ -2181,7 +2257,7 @@ function initReviewScreen() {
   if (revStatement) revStatement.innerText = state.statement || '';
   const revResumeName = document.getElementById('revResumeName');
   if (revResumeName) revResumeName.innerText = state.resumeName || 'Student_Resume.pdf';
-  if (consentBox) consentBox.checked = state.consent ?? true;
+  if (consentBox) consentBox.checked = state.consent !== false;
 }
 
 function handleFinalSubmission() {

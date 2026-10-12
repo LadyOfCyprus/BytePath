@@ -15,7 +15,7 @@
   <!-- Top Persistent Header -->
   <header class="top-header">
     <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
-      <div class="brand-circle"></div>
+      <div class="brand-circle">B</div>
       <span>Bytepath</span>
     </a>
     <ul class="nav-links">
@@ -133,16 +133,34 @@
 
       <div class="panel-card" style="padding: 2.5rem;">
         <!-- Portrait Upload Banner -->
-        <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border);">
-          <div class="avatar-large" style="width: 80px; height: 80px; font-size: 1.6rem; cursor: pointer;">
-            CP
-            <div class="avatar-badge-icon" style="background: var(--color-primary);" title="Upload photo">+</div>
+        <div style="display: flex; align-items: center; gap: 1.75rem; margin-bottom: 2rem; padding-bottom: 1.75rem; border-bottom: 1px solid var(--color-border); flex-wrap: wrap;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <div class="avatar-large" id="resAvatarLarge" style="width: 80px; height: 80px; font-size: 1.6rem; cursor: pointer; position: relative;" onclick="triggerResumeAvatarUpload()" title="Click to upload profile portrait picture">
+              <span>SP</span>
+              <button type="button" class="avatar-badge-icon" title="Upload portrait picture" aria-label="Upload photo" style="cursor: pointer; border: none; outline: none; background: var(--color-primary); color: white;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+              </button>
+            </div>
+            <input type="file" id="resAvatarInput" accept="image/*" style="display: none;" onchange="handleAvatarFileChange(event)">
+            <div style="display: flex; gap: 0.35rem; align-items: center;">
+              <button type="button" id="resUploadBtn" class="btn-ghost" onclick="triggerResumeAvatarUpload()" style="font-size: 0.78rem; padding: 0.25rem 0.65rem; border: 1px solid var(--color-border); border-radius: 9999px; background: white; color: var(--color-text-main); cursor: pointer;">
+                Upload picture
+              </button>
+              <button type="button" id="resRemoveAvatarBtn" class="btn-ghost" onclick="handleRemoveResumeAvatar()" style="font-size: 0.78rem; padding: 0.25rem 0.5rem; color: #DC2626; display: none; cursor: pointer;">
+                Remove
+              </button>
+            </div>
           </div>
           <div>
-            <strong style="font-size: 1rem; display: block; margin-bottom: 0.2rem;">Profile Portrait</strong>
-            <p style="font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.4; max-width: 500px;">
-              Highly recommended for early-career portals. Clear headshot in formal attire helps build initial recruiter trust. Max 5MB.
+            <strong style="font-size: 1.05rem; display: block; margin-bottom: 0.25rem;">Profile Portrait</strong>
+            <p style="font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.45; max-width: 520px; margin-bottom: 0.5rem;">
+              Highly recommended for early-career portals. Clear headshot in formal attire helps build initial recruiter trust. Supports JPG, PNG, or WEBP up to 5MB.
             </p>
+            <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.8rem; color: var(--color-primary); font-weight: 600;">
+              <span>&#10003; Synced across Bytepath profile</span>
+              <span>&middot;</span>
+              <span>&#10003; Appears on generated resume</span>
+            </div>
           </div>
         </div>
 

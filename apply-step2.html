@@ -15,7 +15,7 @@
   <!-- Top Persistent Header -->
   <header class="top-header">
     <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
-      <div class="brand-circle"></div>
+      <div class="brand-circle">B</div>
       <span>Bytepath</span>
     </a>
     <ul class="nav-links">
@@ -78,12 +78,12 @@
   <div class="wizard-container">
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
       <a href="dashboard.html" class="back-btn-link">&larr; Back to dashboard</a>
-      <a href="apply-step1.html" class="back-btn-link">&larr; Back to personal details</a>
+      <a href="apply-step1.html" class="back-btn-link" id="backToStep1">&larr; Back to personal details</a>
     </div>
     <div style="margin: 1rem 0 0.5rem;">
       <span class="hero-eyebrow">Application</span>
       <h1 style="font-family: var(--font-serif); font-size: 2.4rem; font-weight: 600;">Share your experience</h1>
-      <p style="color: var(--color-text-muted);">Tell Northstar Digital Labs what you're learning, what you can bring, and when you're available.</p>
+      <p style="color: var(--color-text-muted);" id="step2JobSubtitle">Tell Northstar Digital Labs what you're learning, what you can bring, and when you're available.</p>
     </div>
 
     <!-- Stepper Navigation -->
@@ -183,7 +183,7 @@
 
       <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
         <div style="display: flex; gap: 0.75rem;">
-          <a href="apply-step1.html" class="btn-secondary">&larr; Back</a>
+          <a href="apply-step1.html" class="btn-secondary" id="step2BackBtn">&larr; Back</a>
           <a href="dashboard.html" class="btn-secondary">Save and exit</a>
         </div>
         <button type="submit" class="btn-primary">

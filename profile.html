@@ -15,7 +15,7 @@
   <!-- Top Persistent Header -->
   <header class="top-header">
     <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
-      <div class="brand-circle"></div>
+      <div class="brand-circle">B</div>
       <span>Bytepath</span>
     </a>
     <ul class="nav-links">
@@ -170,7 +170,7 @@
             </div>
             <input type="file" id="profAvatarInput" accept="image/*" style="display: none;" onchange="handleAvatarFileChange(event)">
             <div style="display: flex; gap: 0.35rem; align-items: center;">
-              <button type="button" class="btn-ghost" onclick="document.getElementById('profAvatarInput').click()" style="font-size: 0.78rem; padding: 0.25rem 0.65rem; border: 1px solid var(--color-border); border-radius: 9999px; background: white; color: var(--color-text-main); cursor: pointer;">
+              <button type="button" id="profUploadBtn" class="btn-ghost" onclick="document.getElementById('profAvatarInput').click()" style="font-size: 0.78rem; padding: 0.25rem 0.65rem; border: 1px solid var(--color-border); border-radius: 9999px; background: white; color: var(--color-text-main); cursor: pointer;">
                 Change photo
               </button>
               <button type="button" id="removeAvatarBtn" class="btn-ghost" onclick="handleRemoveAvatar()" style="font-size: 0.78rem; padding: 0.25rem 0.5rem; color: #DC2626; display: none; cursor: pointer;">
@@ -187,10 +187,6 @@
               Complete your profile details below to start applying for partner internships.
             </p>
           </div>
-        </div>
-
-        <div style="display: flex; gap: 0.75rem;">
-          <button type="button" class="btn-secondary" onclick="showToast('Public student profile is live and searchable by partners.', 'info')">View Public Profile</button>
         </div>
       </div>
 

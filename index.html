@@ -9,13 +9,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // Initial Landing Gate: ensure landing page is login when first opening the web
+    (function() {
+      if (window.location.search.includes('preview=true')) return;
+      try {
+        const raw = localStorage.getItem('bytepath_student_data');
+        if (raw) {
+          const state = JSON.parse(raw);
+          if (state && state.isLoggedIn && state.profileCompleted) {
+            window.location.replace('dashboard.html');
+            return;
+          }
+        }
+      } catch (e) {}
+      window.location.replace('login.html');
+    })();
+  </script>
 </head>
 <body>
 
   <!-- Top Persistent Header -->
   <header class="top-header">
     <a href="index.html" class="brand-logo">
-      <div class="brand-circle"></div>
+      <div class="brand-circle">B</div>
       <span>Bytepath</span>
     </a>
     <ul class="nav-links">
@@ -55,7 +72,7 @@
       <div class="hero-visual-card">
         <span class="hero-visual-subhead">Small Steps. Real Possibilities.</span>
         <h2 class="hero-visual-title">A place to start.<br>Room to grow.</h2>
-        <a href="details.html" class="floating-opportunity-card">
+        <a href="details.html?id=northstar-pdi" class="floating-opportunity-card">
           <div style="display: flex; justify-content: space-between; align-items: flex-start;">
             <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-primary); letter-spacing: 0.05em; text-transform: uppercase;">Your Next Opportunity</span>
             <span style="color: var(--color-primary); font-weight: 700;">&#8599;</span>
@@ -117,7 +134,7 @@
             <div class="card-role-allowance">&#8369;10,000 per month</div>
           </div>
           <div class="card-footer-actions">
-            <a href="details.html" class="btn-secondary">View details</a>
+            <a href="details.html?id=northstar-pdi" class="btn-secondary">View details</a>
             <button class="btn-ghost" onclick="alert('Saved to your shortlist!')">&#9734; Save</button>
           </div>
         </div>
@@ -138,7 +155,7 @@
             <div class="card-role-allowance">&#8369;12,000 per month</div>
           </div>
           <div class="card-footer-actions">
-            <a href="browse.html" class="btn-secondary">View details</a>
+            <a href="details.html?id=harbor-fed-102" class="btn-secondary">View details</a>
             <button class="btn-ghost" onclick="alert('Saved to shortlist!')">&#9734; Save</button>
           </div>
         </div>
@@ -159,7 +176,7 @@
             <div class="card-role-allowance">&#8369;8,000 per month</div>
           </div>
           <div class="card-footer-actions">
-            <a href="browse.html" class="btn-secondary">View details</a>
+            <a href="details.html?id=cedarline-it-103" class="btn-secondary">View details</a>
             <button class="btn-ghost" onclick="alert('Saved to shortlist!')">&#9734; Save</button>
           </div>
         </div>
