@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bytepath · Student Dashboard</title>
+  <meta name="description" content="View application progress, recommended internships, and resume drafts in your student workspace.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Persistent Header -->
+  <header class="top-header">
+    <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
+      <div class="brand-circle"></div>
+      <span>Bytepath</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="browse.html">Find opportunities</a></li>
+      <li><a href="resources.html">Career resources</a></li>
+      <li><a href="employers.html">For employers</a></li>
+    </ul>
+    <div class="user-actions">
+      <!-- Notification Dropdown Anchor -->
+      <div class="notif-wrapper">
+        <button type="button" class="notif-bell" id="notifBellBtn" title="Notifications" onclick="toggleNotifDropdown(event)" aria-label="Notifications">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="notif-badge"></span>
+        </button>
+        <!-- Dropdown Card -->
+        <div class="notif-dropdown" id="notifDropdown" style="display: none;">
+          <div class="notif-dropdown-header">
+            <strong>Notifications</strong>
+            <span class="badge-new">2 New</span>
+          </div>
+          <div class="notif-dropdown-list">
+            <a href="messages.html" class="notif-item">
+              <strong class="notif-title">Alyssa Lim (Northstar Digital Labs)</strong>
+              <span class="notif-desc">Invited you for a 30-min portfolio interview this Thursday.</span>
+              <span class="notif-time">10m ago</span>
+            </a>
+            <a href="confirmation.html" class="notif-item">
+              <strong class="notif-title">Application Receipt: BP-2026-01428</strong>
+              <span class="notif-desc">Product Design Intern application submitted successfully.</span>
+              <span class="notif-time">1h ago</span>
+            </a>
+          </div>
+          <div class="notif-dropdown-footer">
+            <a href="messages.html">View all messages &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Direct Nav Button -->
+      <a href="messages.html" class="notif-bell" title="Messages" aria-label="Messages">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </a>
+
+      <!-- Student Profile Chip -->
+      <a href="profile.html" class="user-chip" title="View student profile">
+        <div class="avatar-circle">ST</div>
+        <span>Student Profile</span>
+      </a>
+
+      <!-- My Applications Pill Button (Active on Dashboard) -->
+      <a href="dashboard.html" class="btn-applications-pill active">My applications</a>
+
+      <!-- Log out Button -->
+      <a href="login.html" onclick="handleLogout(event)" class="btn-logout" title="Sign out of student account">Log out</a>
+    </div>
+  </header>
+
+  <!-- SCREEN 2: STUDENT DASHBOARD -->
+  <div class="dashboard-layout">
+    <!-- Left Sidebar -->
+    <aside class="sidebar-card">
+      <div class="sidebar-user-block">
+        <span class="sidebar-user-label">Student Workspace</span>
+        <div class="sidebar-user-name">Student Profile</div>
+        <div class="sidebar-user-sub">Student Workspace</div>
+      </div>
+
+      <a href="dashboard.html" class="sidebar-nav-item active">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg>
+        Overview
+      </a>
+      <a href="browse.html" class="sidebar-nav-item">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        Find internships
+      </a>
+      <a href="messages.html" class="sidebar-nav-item">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        Messages <span style="background: var(--color-mint); color: var(--color-mint-text); font-size: 0.75rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 9999px; margin-left: auto;">2</span>
+      </a>
+      <a href="resume-builder.html" class="sidebar-nav-item">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+        Create resume
+      </a>
+      <a href="profile.html" class="sidebar-nav-item">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        My profile
+      </a>
+      <a href="settings.html" class="sidebar-nav-item">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        Settings
+      </a>
+      <a href="login.html" onclick="handleLogout(event)" class="sidebar-nav-item" style="color: #DC2626;">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        Log Out
+      </a>
+
+      <div class="sidebar-promo-card">
+        <h5>A little guidance goes a long way.</h5>
+        <p style="color: var(--color-text-muted); font-size: 0.82rem; margin: 0.4rem 0 0.75rem;">Prepare for your first internship with our student career guides.</p>
+        <a href="resources.html" class="text-link-arrow" style="font-size: 0.85rem;">&rarr; Career resources</a>
+      </div>
+    </aside>
+
+    <!-- Main Canvas -->
+    <main>
+      <div class="dashboard-top-row">
+        <div>
+          <div class="date-label">Monday, October 12, 2026</div>
+          <h1 class="greeting-h1">Good morning.</h1>
+          <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-top: 0.25rem;">Explore opportunities that match your interests in design and technology.</p>
+        </div>
+        <a href="browse.html" class="btn-primary">
+          Browse internships
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Metric Stat Cards -->
+      <div class="stat-cards-grid">
+        <div class="stat-card">
+          <div class="stat-card-value" id="dashboardSavedCount">3</div>
+          <div class="stat-card-title">Saved internships</div>
+          <div class="stat-card-sub">Keep your shortlist close.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-value" id="dashboardSubmittedCount">2</div>
+          <div class="stat-card-title">Applications submitted</div>
+          <div class="stat-card-sub">Follow your progress.</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-value" id="dashboardDraftsCount">1</div>
+          <div class="stat-card-title">Application drafts</div>
+          <div class="stat-card-sub">Pick up where you left off.</div>
+        </div>
+      </div>
+
+      <!-- Section: Recommended for you -->
+      <div style="margin-bottom: 2rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+          <h3 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600;">Recommended for you</h3>
+          <a href="browse.html" class="text-link-arrow">See all internships &rarr;</a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+          <!-- Card 1 -->
+          <div class="internship-card">
+            <div>
+              <div class="company-header">
+                <div class="company-avatar">N</div>
+                <div>
+                  <strong style="font-size: 0.95rem;">Northstar Digital Labs</strong>
+                  <div style="font-size: 0.78rem; color: var(--color-text-muted);">Design &middot; June&ndash;September 2027</div>
+                </div>
+              </div>
+              <h4 class="card-role-title">Product Design Intern</h4>
+              <div class="card-role-meta">Makati City &middot; Hybrid</div>
+              <p class="card-role-desc">Turn user insights into clear, accessible interfaces with a collaborative product team.</p>
+              <div class="card-role-allowance">&#8369;10,000 per month</div>
+            </div>
+            <div class="card-footer-actions">
+              <a href="details.html" class="btn-secondary">View details</a>
+              <button type="button" class="btn-ghost btn-save-toggle" data-job-save-id="northstar-pdi" onclick="toggleSaveJob('northstar-pdi', event)">&#9734; Save</button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="internship-card">
+            <div>
+              <div class="company-header">
+                <div class="company-avatar" style="background: #E0F2FE; color: #0369A1;">H</div>
+                <div>
+                  <strong style="font-size: 0.95rem;">HarborWorks Technologies</strong>
+                  <div style="font-size: 0.78rem; color: var(--color-text-muted);">Development &middot; June&ndash;September 2027</div>
+                </div>
+              </div>
+              <h4 class="card-role-title">Front-End Development Intern</h4>
+              <div class="card-role-meta">Taguig City &middot; Hybrid</div>
+              <p class="card-role-desc">Build responsive web experiences and learn component-based development alongside engineers.</p>
+              <div class="card-role-allowance">&#8369;12,000 per month</div>
+            </div>
+            <div class="card-footer-actions">
+              <a href="details.html" class="btn-secondary">View details</a>
+              <button type="button" class="btn-ghost btn-save-toggle" data-job-save-id="harbor-fed-102" onclick="toggleSaveJob('harbor-fed-102', event)">&#9734; Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Split Bottom Grid: Recent Activity & Active Draft -->
+      <div class="split-bottom-grid">
+        <div class="panel-card">
+          <h4 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.85rem;">Recent application activity</h4>
+          <div id="recentSubmissionsList">
+            <div class="activity-item">
+              <div>
+                <strong>UX Research Intern</strong>
+                <div style="font-size: 0.82rem; color: var(--color-text-muted);">Aster Studio &middot; Submitted October 9, 2026</div>
+              </div>
+              <span class="badge-paid">Submitted</span>
+            </div>
+            <div class="activity-item">
+              <div>
+                <strong>Web Development Intern</strong>
+                <div style="font-size: 0.82rem; color: var(--color-text-muted);">Lumen Systems &middot; Submitted October 6, 2026</div>
+              </div>
+              <span class="badge-paid">Submitted</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel-card" id="draftApplicationCard" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <span style="font-size: 0.75rem; font-weight: 700; background: #F3F4F6; padding: 0.25rem 0.5rem; border-radius: 4px; text-transform: uppercase;">Draft Application</span>
+            <h4 style="font-family: var(--font-serif); font-size: 1.35rem; margin: 0.6rem 0 0.25rem;">Product Design Intern</h4>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted);">Northstar Digital Labs</p>
+            <p style="font-size: 0.82rem; color: var(--color-primary); font-weight: 600; margin-top: 0.4rem;">Your details added &middot; Saved just now</p>
+          </div>
+          <a href="apply-step1.html" class="btn-primary" style="margin-top: 1.25rem; width: 100%; justify-content: center;">
+            Resume application &rarr;
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Persistent Footer -->
+  <footer class="global-footer">
+    <div>&copy; 2026 Bytepath &middot; Your next step, with confidence.</div>
+    <div class="footer-links">
+      <a href="javascript:void(0)" onclick="alert('Help center: help@bytepath.edu')">Help center</a>
+      <a href="javascript:void(0)" onclick="alert('Privacy policy.')">Privacy</a>
+      <a href="javascript:void(0)" onclick="alert('Terms of service.')">Terms</a>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initDashboard();
+    });
+  </script>
+</body>
+</html>

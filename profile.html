@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bytepath · Student Profile</title>
+  <meta name="description" content="View and update your student academic profile, verified OJT availability, portfolio link, and skills.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Persistent Header -->
+  <header class="top-header">
+    <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
+      <div class="brand-circle"></div>
+      <span>Bytepath</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="browse.html">Find opportunities</a></li>
+      <li><a href="resources.html">Career resources</a></li>
+      <li><a href="employers.html">For employers</a></li>
+    </ul>
+    <div class="user-actions">
+      <!-- Notification Dropdown Anchor -->
+      <div class="notif-wrapper">
+        <button type="button" class="notif-bell" id="notifBellBtn" title="Notifications" onclick="toggleNotifDropdown(event)" aria-label="Notifications">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="notif-badge"></span>
+        </button>
+        <!-- Dropdown Card -->
+        <div class="notif-dropdown" id="notifDropdown" style="display: none;">
+          <div class="notif-dropdown-header">
+            <strong>Notifications</strong>
+            <span class="badge-new">2 New</span>
+          </div>
+          <div class="notif-dropdown-list">
+            <a href="messages.html" class="notif-item">
+              <strong class="notif-title">Alyssa Lim (Northstar Digital Labs)</strong>
+              <span class="notif-desc">Invited you for a 30-min portfolio interview this Thursday.</span>
+              <span class="notif-time">10m ago</span>
+            </a>
+            <a href="confirmation.html" class="notif-item">
+              <strong class="notif-title">Application Receipt: BP-2026-01428</strong>
+              <span class="notif-desc">Product Design Intern application submitted successfully.</span>
+              <span class="notif-time">1h ago</span>
+            </a>
+          </div>
+          <div class="notif-dropdown-footer">
+            <a href="messages.html">View all messages &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Direct Nav Button -->
+      <a href="messages.html" class="notif-bell" title="Messages" aria-label="Messages">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </a>
+
+      <!-- Student Profile Chip -->
+      <a href="profile.html" class="user-chip active" title="View student profile">
+        <div class="avatar-circle">ST</div>
+        <span>Student Profile</span>
+      </a>
+
+      <!-- My Applications Pill Button -->
+      <a href="dashboard.html" class="btn-applications-pill">My applications</a>
+
+      <!-- Log out Button -->
+      <a href="login.html" onclick="handleLogout(event)" class="btn-logout" title="Sign out of student account">Log out</a>
+    </div>
+  </header>
+
+  <!-- PROFILE MAIN CONTENT -->
+  <div class="profile-two-col">
+    <!-- Left Sidebar Cards -->
+    <aside style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <a href="dashboard.html" class="back-btn-link" style="margin-bottom: -0.5rem;">&larr; Back to dashboard</a>
+      <!-- Profile Strength Card -->
+      <div class="panel-card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h4 style="font-family: var(--font-serif); font-size: 1.25rem;">Profile Strength</h4>
+          <span style="font-weight: 700; color: var(--color-primary); font-size: 1.05rem;">88%</span>
+        </div>
+        <div class="meter-bar-container">
+          <div class="meter-bar-fill" style="width: 88%;"></div>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.45;">
+          Profile is active and verified with your institutional student email.
+        </p>
+      </div>
+
+      <!-- OJT Availability Card -->
+      <div class="panel-card">
+        <h4 style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 0.75rem;">OJT Availability</h4>
+        <div style="background: var(--color-mint); color: var(--color-mint-text); padding: 0.4rem 0.8rem; border-radius: 9999px; font-size: 0.8rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.4rem; margin-bottom: 1.25rem;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--color-primary);"></span>
+          Actively looking for OJT
+        </div>
+
+        <div style="font-size: 0.88rem; line-height: 1.8;">
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--color-text-muted);">Target Start</span>
+            <strong>Immediate</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--color-text-muted);">Required Hours</span>
+            <strong>486 Hours</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between;">
+            <span style="color: var(--color-text-muted);">Weekly Commitment</span>
+            <strong>20-30 hrs/wk</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bytepath Resume Card -->
+      <div class="panel-card">
+        <h4 style="font-family: var(--font-serif); font-size: 1.25rem;">Bytepath Resume</h4>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); margin: 0.25rem 0 1rem;">Generated from your personal profile.</p>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem; background: #F9FAFB; padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--color-border); margin-bottom: 1rem;">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          <div>
+            <strong style="font-size: 0.88rem; display: block;" id="profResumeFilename">Student_Resume.pdf</strong>
+            <span style="font-size: 0.75rem; color: var(--color-text-muted);">Bytepath Portfolio File</span>
+          </div>
+        </div>
+
+        <a href="resume-builder.html" class="btn-secondary" style="width: 100%; justify-content: center; font-size: 0.88rem;">
+          Update Resume Details
+        </a>
+      </div>
+
+      <!-- Navigation links to other portal pages -->
+      <div class="panel-card" style="padding: 1rem;">
+        <a href="dashboard.html" class="sidebar-nav-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg>
+          Overview / Dashboard
+        </a>
+        <a href="settings.html" class="sidebar-nav-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Account Settings
+        </a>
+        <a href="messages.html" class="sidebar-nav-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          Messages
+        </a>
+        <a href="login.html" onclick="handleLogout(event)" class="sidebar-nav-item" style="color: #DC2626;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          Log Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- Right Profile Main Column -->
+    <main style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <!-- Profile Header Banner Card -->
+      <div class="panel-card" style="display: flex; justify-content: space-between; align-items: center; padding: 2.25rem;">
+        <div style="display: flex; align-items: center; gap: 1.75rem;">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 0.5rem;">
+            <div class="avatar-large" id="profAvatarLarge" style="cursor: pointer; position: relative;" onclick="document.getElementById('profAvatarInput').click()" title="Click to upload profile picture">
+              <span>SP</span>
+              <button type="button" class="avatar-badge-icon" title="Change profile picture" aria-label="Change photo" style="cursor: pointer; border: none; outline: none; background: var(--color-primary); color: white;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+              </button>
+            </div>
+            <input type="file" id="profAvatarInput" accept="image/*" style="display: none;" onchange="handleAvatarFileChange(event)">
+            <div style="display: flex; gap: 0.35rem; align-items: center;">
+              <button type="button" class="btn-ghost" onclick="document.getElementById('profAvatarInput').click()" style="font-size: 0.78rem; padding: 0.25rem 0.65rem; border: 1px solid var(--color-border); border-radius: 9999px; background: white; color: var(--color-text-main); cursor: pointer;">
+                Change photo
+              </button>
+              <button type="button" id="removeAvatarBtn" class="btn-ghost" onclick="handleRemoveAvatar()" style="font-size: 0.78rem; padding: 0.25rem 0.5rem; color: #DC2626; display: none; cursor: pointer;">
+                Remove
+              </button>
+            </div>
+          </div>
+          <div>
+            <h1 style="font-family: var(--font-serif); font-size: 2.2rem; font-weight: 600; line-height: 1.15;" id="profDisplayFullName">Student Profile</h1>
+            <div style="font-size: 1rem; font-weight: 600; color: var(--color-primary); margin: 0.25rem 0 0.4rem;" id="profDisplayHeadline">
+              Profile Incomplete &middot; Please fill details below
+            </div>
+            <p style="font-size: 0.9rem; color: var(--color-text-muted);" id="profDisplaySub">
+              Complete your profile details below to start applying for partner internships.
+            </p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem;">
+          <button type="button" class="btn-secondary" onclick="showToast('Public student profile is live and searchable by partners.', 'info')">View Public Profile</button>
+        </div>
+      </div>
+
+      <!-- Profile Details Form Card with Live Persistence -->
+      <form class="panel-card" style="padding: 2.5rem;" onsubmit="handleProfileSave(event)">
+        <!-- Section 1 -->
+        <h3 style="font-family: var(--font-serif); font-size: 1.35rem; margin-bottom: 1.25rem;">Personal Contact Details</h3>
+        <div class="form-row-2">
+          <div class="form-item">
+            <label for="profFullName">Full Name *</label>
+            <input type="text" class="form-input-field" id="profFullName" required>
+          </div>
+          <div class="form-item">
+            <label for="profHeadline">Headline / Role Specialization *</label>
+            <input type="text" class="form-input-field" id="profHeadline" required>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-item">
+            <label for="profEmail">Student Email Address *</label>
+            <input type="email" class="form-input-field" id="profEmail" required>
+          </div>
+          <div class="form-item">
+            <label for="profPhone">Mobile Number *</label>
+            <input type="tel" class="form-input-field" id="profPhone" required>
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-item">
+            <label for="profPortfolio">Portfolio Link (Behance / GitHub)</label>
+            <input type="url" class="form-input-field" id="profPortfolio">
+          </div>
+          <div class="form-item">
+            <label for="profLinkedIn">LinkedIn Profile</label>
+            <input type="url" class="form-input-field" id="profLinkedIn">
+          </div>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid var(--color-border); margin: 2rem 0;">
+
+        <!-- Section 2 -->
+        <h3 style="font-family: var(--font-serif); font-size: 1.35rem; margin-bottom: 1.25rem;">OJT & Career Preferences</h3>
+        <div class="form-row-2">
+          <div class="form-item">
+            <label for="profTargetRole">Target Roles</label>
+            <input type="text" class="form-input-field" id="profTargetRole">
+          </div>
+          <div class="form-item">
+            <label for="profOjtSetup">Preferred OJT Setup</label>
+            <input type="text" class="form-input-field" id="profOjtSetup">
+          </div>
+        </div>
+
+        <div class="form-item" style="margin-top: 1rem;">
+          <label for="profBio">Personal Statement & Career Objective</label>
+          <textarea class="form-input-field" id="profBio" rows="3" style="height: auto; padding: 0.75rem 1rem;"></textarea>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid var(--color-border); margin: 2rem 0;">
+
+        <!-- Section 3: Skills & Interests -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="font-family: var(--font-serif); font-size: 1.35rem; margin: 0;">Skills & Interests</h3>
+          <button type="button" class="btn-ghost" onclick="promptAddSkillTag()" style="font-size: 0.85rem; border: 1px dashed var(--color-primary); color: var(--color-primary); padding: 0.35rem 0.75rem; border-radius: 9999px;">+ Add Skill Tag</button>
+        </div>
+
+        <!-- Dynamic Skill Tags Container -->
+        <div id="profileSkillsContainer" style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2rem;">
+          <!-- Populated by app.js renderProfileSkillTags() -->
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+          <span style="font-size: 0.82rem; color: var(--color-text-muted);">Changes sync automatically to your dashboard and applications.</span>
+          <button type="submit" class="btn-primary">
+            Save Profile Changes
+          </button>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <!-- Persistent Footer -->
+  <footer class="global-footer">
+    <div>&copy; 2026 Bytepath &middot; Your next step, with confidence.</div>
+    <div class="footer-links">
+      <a href="javascript:void(0)" onclick="alert('Help center: help@bytepath.edu')">Help center</a>
+      <a href="javascript:void(0)" onclick="alert('Privacy policy.')">Privacy</a>
+      <a href="javascript:void(0)" onclick="alert('Terms of service.')">Terms</a>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initProfilePage();
+    });
+  </script>
+</body>
+</html>

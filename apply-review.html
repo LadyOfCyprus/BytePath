@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bytepath · Review Your Application</title>
+  <meta name="description" content="Review your internship application details before sending them to Northstar Digital Labs.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Persistent Header -->
+  <header class="top-header">
+    <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
+      <div class="brand-circle"></div>
+      <span>Bytepath</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="browse.html" class="active">Find opportunities</a></li>
+      <li><a href="resources.html">Career resources</a></li>
+      <li><a href="employers.html">For employers</a></li>
+    </ul>
+    <div class="user-actions">
+      <!-- Notification Dropdown Anchor -->
+      <div class="notif-wrapper">
+        <button type="button" class="notif-bell" id="notifBellBtn" title="Notifications" onclick="toggleNotifDropdown(event)" aria-label="Notifications">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="notif-badge"></span>
+        </button>
+        <!-- Dropdown Card -->
+        <div class="notif-dropdown" id="notifDropdown" style="display: none;">
+          <div class="notif-dropdown-header">
+            <strong>Notifications</strong>
+            <span class="badge-new">2 New</span>
+          </div>
+          <div class="notif-dropdown-list">
+            <a href="messages.html" class="notif-item">
+              <strong class="notif-title">Alyssa Lim (Northstar Digital Labs)</strong>
+              <span class="notif-desc">Invited you for a 30-min portfolio interview this Thursday.</span>
+              <span class="notif-time">10m ago</span>
+            </a>
+            <a href="confirmation.html" class="notif-item">
+              <strong class="notif-title">Application Receipt: BP-2026-01428</strong>
+              <span class="notif-desc">Product Design Intern application submitted successfully.</span>
+              <span class="notif-time">1h ago</span>
+            </a>
+          </div>
+          <div class="notif-dropdown-footer">
+            <a href="messages.html">View all messages &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Direct Nav Button -->
+      <a href="messages.html" class="notif-bell" title="Messages" aria-label="Messages">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </a>
+
+      <!-- Student Profile Chip -->
+      <a href="profile.html" class="user-chip" title="View student profile">
+        <div class="avatar-circle">ST</div>
+        <span>Student Profile</span>
+      </a>
+
+      <!-- My Applications Pill Button -->
+      <a href="dashboard.html" class="btn-applications-pill">My applications</a>
+
+      <!-- Log out Button -->
+      <a href="login.html" onclick="handleLogout(event)" class="btn-logout" title="Sign out of student account">Log out</a>
+    </div>
+  </header>
+
+  <!-- SCREEN 5: REVIEW AND SUBMIT -->
+  <div class="wizard-container">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
+      <a href="dashboard.html" class="back-btn-link">&larr; Back to dashboard</a>
+      <a href="apply-step2.html" class="back-btn-link">&larr; Back to experience</a>
+    </div>
+    <div style="margin: 1rem 0 0.5rem;">
+      <span class="hero-eyebrow">Application</span>
+      <h1 style="font-family: var(--font-serif); font-size: 2.4rem; font-weight: 600;">Review your application</h1>
+      <p style="color: var(--color-text-muted);">Check your information before sending it to Northstar Digital Labs.</p>
+    </div>
+
+    <!-- Stepper Navigation -->
+    <div class="stepper-header">
+      <div class="stepper-item completed">
+        <div class="stepper-number">&#10003;</div>
+        <span>Your details</span>
+      </div>
+      <div class="stepper-item completed">
+        <div class="stepper-number">&#10003;</div>
+        <span>Experience</span>
+      </div>
+      <div class="stepper-item active">
+        <div class="stepper-number">3</div>
+        <span>Review</span>
+      </div>
+    </div>
+
+    <main class="form-canvas">
+      <!-- Review Block 1: Personal Information -->
+      <div class="review-block">
+        <div class="review-block-header">
+          <span class="review-block-title">Personal information</span>
+          <a href="apply-step1.html" class="edit-jump-link">Edit</a>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.92rem;">
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 0.8rem; display: block;">Full name</span>
+            <strong id="revFullName">Student Applicant</strong>
+          </div>
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 0.8rem; display: block;">Current location</span>
+            <strong id="revLocation">Current Location</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review Block 2: Contact Information -->
+      <div class="review-block">
+        <div class="review-block-header">
+          <span class="review-block-title">Contact information</span>
+          <a href="apply-step1.html" class="edit-jump-link">Edit</a>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.92rem;">
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 0.8rem; display: block;">Email address</span>
+            <strong id="revEmail">student@university.edu.ph</strong>
+          </div>
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 0.8rem; display: block;">Mobile number</span>
+            <strong id="revPhone">Contact Number</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review Block 3: Education and Skills -->
+      <div class="review-block">
+        <div class="review-block-header">
+          <span class="review-block-title">Education and skills</span>
+          <a href="apply-step2.html" class="edit-jump-link">Edit</a>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.92rem; margin-bottom: 0.75rem;">
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 0.8rem; display: block;">School or university</span>
+            <strong id="revUniversity">Enrolled Institution</strong>
+          </div>
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 0.8rem; display: block;">Degree and year</span>
+            <strong id="revDegreeYear">Degree Program &middot; Year Level</strong>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Wireframing</span>
+          <span class="skill-tag">Usability testing</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+        </div>
+      </div>
+
+      <!-- Review Block 4: Availability and Experience -->
+      <div class="review-block">
+        <div class="review-block-header">
+          <span class="review-block-title">Availability and experience</span>
+          <a href="apply-step2.html" class="edit-jump-link">Edit</a>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; font-size: 0.92rem; margin-bottom: 0.75rem;">
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 0.8rem; display: block;">Start date</span>
+            <strong id="revStart">June 7, 2027</strong>
+          </div>
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 0.8rem; display: block;">End date</span>
+            <strong id="revEnd">September 30, 2027</strong>
+          </div>
+          <div>
+            <span style="color: var(--color-text-muted); font-size: 0.8rem; display: block;">Weekly availability</span>
+            <strong id="revHours">32 hours</strong>
+          </div>
+        </div>
+        <div>
+          <span style="color: var(--color-text-muted); font-size: 0.8rem; display: block;">Relevant experience</span>
+          <p style="font-size: 0.88rem; color: var(--color-text-body);" id="revProject">Redesigned a campus event registration interface for an HCI course project</p>
+        </div>
+      </div>
+
+      <!-- Review Block 5: Résumé Attachment -->
+      <div class="review-block">
+        <div class="review-block-header">
+          <span class="review-block-title">Résumé attachment</span>
+          <a href="apply-step1.html" class="edit-jump-link">Edit</a>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; background: #FFFFFF; padding: 0.75rem 1rem; border: 1px solid var(--color-border); border-radius: var(--radius-sm);">
+          <div>
+            <strong id="revResumeName">Student_Resume.pdf</strong>
+            <div style="font-size: 0.8rem; color: var(--color-text-muted);">PDF &middot; 1.8 MB</div>
+          </div>
+          <span style="color: var(--color-primary); font-weight: 700;">&#10003; Attached</span>
+        </div>
+      </div>
+
+      <!-- Review Block 6: Statement of Interest -->
+      <div class="review-block">
+        <div class="review-block-header">
+          <span class="review-block-title">Statement of interest</span>
+          <a href="apply-step2.html" class="edit-jump-link">Edit</a>
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.5; color: var(--color-text-body);" id="revStatement">
+          I want to develop my product design skills by working with a team that uses research to guide interface decisions. In my HCI coursework, I created prototypes and conducted peer usability tests. I would like to contribute these skills while learning professional design and handoff practices.
+        </p>
+      </div>
+
+      <!-- Consent Checkbox -->
+      <div style="background: #FFFFFF; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 2rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+        <input type="checkbox" id="consentCheckbox" checked style="accent-color: var(--color-primary); width: 18px; height: 18px; margin-top: 3px; cursor: pointer;">
+        <label for="consentCheckbox" style="font-size: 0.88rem; color: var(--color-text-body); cursor: pointer; line-height: 1.4;">
+          I confirm that this information is accurate and consent to sharing this application with Northstar Digital Labs for recruitment purposes.
+        </label>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--color-border);">
+        <div style="display: flex; gap: 0.75rem;">
+          <a href="apply-step2.html" class="btn-secondary">&larr; Back to experience</a>
+          <a href="dashboard.html" class="btn-secondary">Save as draft &amp; exit</a>
+        </div>
+        <button type="button" class="btn-primary" style="height: 48px; padding: 0 2rem; font-size: 1rem;" onclick="handleFinalSubmission()">
+          Submit application &rarr;
+        </button>
+      </div>
+
+      <div class="toast-status">
+        <div class="dot"></div>
+        <span>All required information added &middot; Ready to submit</span>
+      </div>
+    </main>
+  </div>
+
+  <!-- Persistent Footer -->
+  <footer class="global-footer">
+    <div>&copy; 2026 Bytepath &middot; Your next step, with confidence.</div>
+    <div class="footer-links">
+      <a href="javascript:void(0)" onclick="alert('Help center: help@bytepath.edu')">Help center</a>
+      <a href="javascript:void(0)" onclick="alert('Privacy policy.')">Privacy</a>
+      <a href="javascript:void(0)" onclick="alert('Terms of service.')">Terms</a>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initReviewScreen();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bytepath · Student Career Resources & Guides</title>
+  <meta name="description" content="Guides, templates, and career resources to help IT students prepare for technical internships and practicum.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Persistent Header -->
+  <header class="top-header">
+    <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
+      <div class="brand-circle"></div>
+      <span>Bytepath</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="browse.html">Find opportunities</a></li>
+      <li><a href="resources.html" class="active">Career resources</a></li>
+      <li><a href="employers.html">For employers</a></li>
+    </ul>
+    <div class="user-actions">
+      <!-- Notification Dropdown Anchor -->
+      <div class="notif-wrapper">
+        <button type="button" class="notif-bell" id="notifBellBtn" title="Notifications" onclick="toggleNotifDropdown(event)" aria-label="Notifications">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="notif-badge"></span>
+        </button>
+        <!-- Dropdown Card -->
+        <div class="notif-dropdown" id="notifDropdown" style="display: none;">
+          <div class="notif-dropdown-header">
+            <strong>Notifications</strong>
+            <span class="badge-new">2 New</span>
+          </div>
+          <div class="notif-dropdown-list">
+            <a href="messages.html" class="notif-item">
+              <strong class="notif-title">Alyssa Lim (Northstar Digital Labs)</strong>
+              <span class="notif-desc">Invited you for a 30-min portfolio interview this Thursday.</span>
+              <span class="notif-time">10m ago</span>
+            </a>
+            <a href="confirmation.html" class="notif-item">
+              <strong class="notif-title">Application Receipt: BP-2026-01428</strong>
+              <span class="notif-desc">Product Design Intern application submitted successfully.</span>
+              <span class="notif-time">1h ago</span>
+            </a>
+          </div>
+          <div class="notif-dropdown-footer">
+            <a href="messages.html">View all messages &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Direct Nav Button -->
+      <a href="messages.html" class="notif-bell" title="Messages" aria-label="Messages">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </a>
+
+      <!-- Student Profile Chip -->
+      <a href="profile.html" class="user-chip" title="View student profile">
+        <div class="avatar-circle">ST</div>
+        <span>Student Profile</span>
+      </a>
+
+      <!-- My Applications Pill Button -->
+      <a href="dashboard.html" class="btn-applications-pill">My applications</a>
+
+      <!-- Log out Button -->
+      <a href="login.html" onclick="handleLogout(event)" class="btn-logout" title="Sign out of student account">Log out</a>
+    </div>
+  </header>
+
+  <!-- RESOURCES HERO -->
+  <main class="section-container" style="margin-top: 2rem;">
+    <a href="dashboard.html" class="back-btn-link" style="margin-bottom: 2rem; display: inline-flex;">&larr; Back to dashboard</a>
+    <div style="text-align: center; max-width: 760px; margin: 0 auto 3.5rem;">
+      <span class="hero-eyebrow">Student Career Hub</span>
+      <h1 style="font-family: var(--font-serif); font-size: 3.2rem; font-weight: 600; line-height: 1.15; margin-bottom: 1rem;">
+        Everything you need to land your first tech internship.
+      </h1>
+      <p style="font-size: 1.1rem; color: var(--color-text-muted);">
+        Practical guides, portfolio templates, and interview prep written specifically for Information Technology undergraduates.
+      </p>
+    </div>
+
+    <!-- Resource Cards Grid -->
+    <div class="card-grid-3">
+      <!-- Guide 1 -->
+      <div class="internship-card">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase;">Resume &amp; CV</span>
+          <h3 style="font-family: var(--font-serif); font-size: 1.45rem; margin: 0.5rem 0;">The IT Student Resume Checklist</h3>
+          <p style="font-size: 0.9rem; color: var(--color-text-body); line-height: 1.5; margin-bottom: 1.25rem;">
+            How to highlight class projects, coursework, and GitHub repositories when you have zero formal workplace experience.
+          </p>
+        </div>
+        <a href="resume-builder.html" class="btn-primary" style="justify-content: center;">
+          Build your resume &rarr;
+        </a>
+      </div>
+
+      <!-- Guide 2 -->
+      <div class="internship-card">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: #0369A1; text-transform: uppercase;">Interview Preparation</span>
+          <h3 style="font-family: var(--font-serif); font-size: 1.45rem; margin: 0.5rem 0;">Ace Your Portfolio Walkthrough</h3>
+          <p style="font-size: 0.9rem; color: var(--color-text-body); line-height: 1.5; margin-bottom: 1.25rem;">
+            Step-by-step framework for presenting design and development case studies to engineering and product leads.
+          </p>
+        </div>
+        <a href="messages.html" class="btn-secondary" style="justify-content: center;">
+          View recruiter tips
+        </a>
+      </div>
+
+      <!-- Guide 3 -->
+      <div class="internship-card">
+        <div>
+          <span style="font-size: 0.75rem; font-weight: 700; color: #B45309; text-transform: uppercase;">OJT &amp; Practicum</span>
+          <h3 style="font-family: var(--font-serif); font-size: 1.45rem; margin: 0.5rem 0;">Managing 486 OJT Hours</h3>
+          <p style="font-size: 0.9rem; color: var(--color-text-body); line-height: 1.5; margin-bottom: 1.25rem;">
+            A student guide to timesheet logging, mentor signatures, and balancing university thesis coursework with your internship.
+          </p>
+        </div>
+        <a href="profile.html" class="btn-secondary" style="justify-content: center;">
+          Track OJT hours
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Persistent Footer -->
+  <footer class="global-footer">
+    <div>&copy; 2026 Bytepath &middot; Your next step, with confidence.</div>
+    <div class="footer-links">
+      <a href="resources.html">Career resources</a>
+      <a href="employers.html">For employers</a>
+      <a href="browse.html">Find opportunities</a>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

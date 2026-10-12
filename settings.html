@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bytepath · Account &amp; Security Settings</title>
+  <meta name="description" content="Manage your Bytepath account settings, verified student email, notification channels, and privacy preferences.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Top Persistent Header -->
+  <header class="top-header">
+    <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
+      <div class="brand-circle"></div>
+      <span>Bytepath</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="browse.html">Find opportunities</a></li>
+      <li><a href="resources.html">Career resources</a></li>
+      <li><a href="employers.html">For employers</a></li>
+    </ul>
+    <div class="user-actions">
+      <!-- Notification Dropdown Anchor -->
+      <div class="notif-wrapper">
+        <button type="button" class="notif-bell" id="notifBellBtn" title="Notifications" onclick="toggleNotifDropdown(event)" aria-label="Notifications">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="notif-badge"></span>
+        </button>
+        <!-- Dropdown Card -->
+        <div class="notif-dropdown" id="notifDropdown" style="display: none;">
+          <div class="notif-dropdown-header">
+            <strong>Notifications</strong>
+            <span class="badge-new">2 New</span>
+          </div>
+          <div class="notif-dropdown-list">
+            <a href="messages.html" class="notif-item">
+              <strong class="notif-title">Alyssa Lim (Northstar Digital Labs)</strong>
+              <span class="notif-desc">Invited you for a 30-min portfolio interview this Thursday.</span>
+              <span class="notif-time">10m ago</span>
+            </a>
+            <a href="confirmation.html" class="notif-item">
+              <strong class="notif-title">Application Receipt: BP-2026-01428</strong>
+              <span class="notif-desc">Product Design Intern application submitted successfully.</span>
+              <span class="notif-time">1h ago</span>
+            </a>
+          </div>
+          <div class="notif-dropdown-footer">
+            <a href="messages.html">View all messages &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Direct Nav Button -->
+      <a href="messages.html" class="notif-bell" title="Messages" aria-label="Messages">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </a>
+
+      <!-- Student Profile Chip -->
+      <a href="profile.html" class="user-chip" title="View student profile">
+        <div class="avatar-circle">ST</div>
+        <span>Student Profile</span>
+      </a>
+
+      <!-- My Applications Pill Button -->
+      <a href="dashboard.html" class="btn-applications-pill">My applications</a>
+
+      <!-- Log out Button -->
+      <a href="login.html" onclick="handleLogout(event)" class="btn-logout" title="Sign out of student account">Log out</a>
+    </div>
+  </header>
+
+  <!-- SETTINGS MAIN CONTENT -->
+  <div class="profile-two-col">
+    <!-- Left Sidebar Cards -->
+    <aside style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <a href="dashboard.html" class="back-btn-link" style="margin-bottom: -0.5rem;">&larr; Back to dashboard</a>
+      <!-- Profile Strength Card -->
+      <div class="panel-card">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <h4 style="font-family: var(--font-serif); font-size: 1.25rem;">Account Security</h4>
+          <span style="font-weight: 700; color: var(--color-primary); font-size: 1.05rem;">Protected</span>
+        </div>
+        <div class="meter-bar-container">
+          <div class="meter-bar-fill" style="width: 100%;"></div>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.45;">
+          Two-factor authentication verified through university email.
+        </p>
+      </div>
+
+      <!-- Settings Menu Panel -->
+      <div class="panel-card" style="padding: 1rem;">
+        <h5 style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; color: var(--color-text-muted); padding: 0.5rem 0.75rem; letter-spacing: 0.05em;">Settings Menu</h5>
+        <a href="dashboard.html" class="sidebar-nav-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="3" rx="1"></rect><rect width="7" height="7" x="14" y="14" rx="1"></rect><rect width="7" height="7" x="3" y="14" rx="1"></rect></svg>
+          Overview / Dashboard
+        </a>
+        <a href="settings.html" class="sidebar-nav-item active">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          Account &amp; Security
+        </a>
+        <a href="profile.html" class="sidebar-nav-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Profile Information
+        </a>
+        <a href="messages.html" class="sidebar-nav-item">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          Messages
+        </a>
+        <a href="login.html" onclick="handleLogout(event)" class="sidebar-nav-item" style="color: #DC2626;">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          Log Out
+        </a>
+      </div>
+    </aside>
+
+    <!-- Right Settings Main Column -->
+    <main style="display: flex; flex-direction: column; gap: 1.5rem;">
+      <div>
+        <span class="hero-eyebrow">Settings &amp; Preferences</span>
+        <h1 style="font-family: var(--font-serif); font-size: 2.6rem; font-weight: 600;">Manage your career account</h1>
+        <p style="color: var(--color-text-muted);">Update your account details, privacy settings, notification preferences, and persistent credentials.</p>
+      </div>
+
+      <!-- Settings Form with Live Two-Way Persistence -->
+      <form onsubmit="handleSettingsSave(event)" style="display: flex; flex-direction: column; gap: 1.5rem;">
+        <!-- Card 1: Account Information -->
+        <div class="panel-card" style="padding: 2.5rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 0.4rem;">
+                <div class="avatar-large" id="settingsAvatarLarge" style="width: 72px; height: 72px; font-size: 1.5rem; overflow: hidden;">
+                  <span>SP</span>
+                </div>
+                <a href="profile.html" class="btn-ghost" style="font-size: 0.75rem; padding: 0.15rem 0.5rem; border: 1px solid var(--color-border); border-radius: 9999px; text-decoration: none; color: var(--color-text-main);">
+                  Change
+                </a>
+              </div>
+              <div>
+                <h3 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600;" id="settingsDisplayName">Student Profile</h3>
+                <p style="font-size: 0.9rem; color: var(--color-text-muted);">
+                  <strong id="settingsDisplayEmail">student@university.edu.ph</strong> &bull; Verified Student
+                </p>
+                <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.2rem;">
+                  Your student email determines your alignment with pre-approved OJT partner portals.
+                </p>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary">Save account changes</button>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-item">
+              <label for="settingsFullName">Full Name *</label>
+              <input type="text" class="form-input-field" id="settingsFullName" required>
+            </div>
+            <div class="form-item">
+              <label for="settingsPreferredName">Preferred Name / Nickname</label>
+              <input type="text" class="form-input-field" id="settingsPreferredName">
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-item">
+              <label for="settingsStudentId">Student Identification Number *</label>
+              <input type="text" class="form-input-field" id="settingsStudentId" required>
+            </div>
+            <div class="form-item">
+              <label for="settingsInstitution">Enrolled Institution *</label>
+              <input type="text" class="form-input-field" id="settingsInstitution" required>
+            </div>
+          </div>
+
+          <div class="form-item" style="margin-top: 1rem;">
+            <label for="settingsEmail">Primary Student Email *</label>
+            <input type="email" class="form-input-field" id="settingsEmail" required>
+          </div>
+        </div>
+
+        <!-- Card 2: Notification & Job Alert Settings -->
+        <div class="panel-card" style="padding: 2.5rem;">
+          <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 0.35rem;">Job &amp; Notification Alert Settings</h3>
+          <p style="font-size: 0.9rem; color: var(--color-text-muted); margin-bottom: 2rem;">Configure your preferred OJT alert channels and automated matching rules.</p>
+
+          <!-- Toggle Row 1 -->
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--color-border);">
+            <div>
+              <strong style="font-size: 0.95rem; display: block;">Instant Email Notifications</strong>
+              <span style="font-size: 0.85rem; color: var(--color-text-muted);">Receive immediate email alerts when verified partners view your profile or message you.</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="settingsEmailToggle" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <!-- Toggle Row 2 -->
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid var(--color-border);">
+            <div>
+              <strong style="font-size: 0.95rem; display: block;">OJT Matching Suggestions</strong>
+              <span style="font-size: 0.85rem; color: var(--color-text-muted);">Get a weekly digest of recommended OJT slots matching your HCI specialization.</span>
+            </div>
+            <label class="toggle-switch">
+              <input type="checkbox" id="settingsDigestToggle" checked>
+              <span class="slider-toggle"></span>
+            </label>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+            <button type="button" class="btn-secondary" onclick="handleLogout(event)" style="color: #DC2626; border-color: #F87171;">
+              Sign out of all sessions
+            </button>
+            <button type="submit" class="btn-primary">
+              Save Account Settings
+            </button>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <!-- Persistent Footer -->
+  <footer class="global-footer">
+    <div>&copy; 2026 Bytepath &middot; Your next step, with confidence.</div>
+    <div class="footer-links">
+      <a href="javascript:void(0)" onclick="alert('Help center: help@bytepath.edu')">Help center</a>
+      <a href="javascript:void(0)" onclick="alert('Privacy policy.')">Privacy</a>
+      <a href="javascript:void(0)" onclick="alert('Terms of service.')">Terms</a>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initSettingsPage();
+    });
+  </script>
+</body>
+</html>

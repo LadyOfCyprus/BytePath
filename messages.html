@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bytepath · Recruiter Messages · Alyssa Lim (Northstar Digital Labs)</title>
+  <meta name="description" content="Communicate directly with early-career recruiters and schedule portfolio interviews.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body style="background: #F4F5F1;">
+
+  <!-- Top Persistent Header -->
+  <header class="top-header">
+    <a href="dashboard.html" class="brand-logo" title="Bytepath Dashboard">
+      <div class="brand-circle"></div>
+      <span>Bytepath</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="browse.html">Find opportunities</a></li>
+      <li><a href="resources.html">Career resources</a></li>
+      <li><a href="employers.html">For employers</a></li>
+    </ul>
+    <div class="user-actions">
+      <!-- Notification Dropdown Anchor -->
+      <div class="notif-wrapper">
+        <button type="button" class="notif-bell" id="notifBellBtn" title="Notifications" onclick="toggleNotifDropdown(event)" aria-label="Notifications">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span class="notif-badge"></span>
+        </button>
+        <!-- Dropdown Card -->
+        <div class="notif-dropdown" id="notifDropdown" style="display: none;">
+          <div class="notif-dropdown-header">
+            <strong>Notifications</strong>
+            <span class="badge-new">2 New</span>
+          </div>
+          <div class="notif-dropdown-list">
+            <a href="messages.html" class="notif-item">
+              <strong class="notif-title">Alyssa Lim (Northstar Digital Labs)</strong>
+              <span class="notif-desc">Invited you for a 30-min portfolio interview this Thursday.</span>
+              <span class="notif-time">10m ago</span>
+            </a>
+            <a href="confirmation.html" class="notif-item">
+              <strong class="notif-title">Application Receipt: BP-2026-01428</strong>
+              <span class="notif-desc">Product Design Intern application submitted successfully.</span>
+              <span class="notif-time">1h ago</span>
+            </a>
+          </div>
+          <div class="notif-dropdown-footer">
+            <a href="messages.html">View all messages &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages Direct Nav Button (Active on Messages) -->
+      <a href="messages.html" class="notif-bell active" title="Messages" aria-label="Messages">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </a>
+
+      <!-- Student Profile Chip -->
+      <a href="profile.html" class="user-chip" title="View student profile">
+        <div class="avatar-circle">ST</div>
+        <span>Student Profile</span>
+      </a>
+
+      <!-- My Applications Pill Button -->
+      <a href="dashboard.html" class="btn-applications-pill">My applications</a>
+
+      <!-- Log out Button -->
+      <a href="login.html" onclick="handleLogout(event)" class="btn-logout" title="Sign out of student account">Log out</a>
+    </div>
+  </header>
+
+  <!-- MESSAGES 3-COLUMN LAYOUT -->
+  <div class="messages-container">
+    <!-- Column 1: Conversations Sidebar -->
+    <aside class="convos-sidebar">
+      <a href="dashboard.html" class="back-btn-link" style="margin-bottom: 0.85rem; display: inline-flex;">&larr; Back to dashboard</a>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+        <div>
+          <h2 style="font-family: var(--font-serif); font-size: 1.6rem; font-weight: 600;">Messages</h2>
+          <span style="font-size: 0.8rem; color: var(--color-text-muted);">4 active conversations</span>
+        </div>
+        <button class="btn-ghost" style="padding: 6px; border-radius: 50%;" title="New Message" onclick="alert('New message composer opened.')">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        </button>
+      </div>
+
+      <!-- Search Input -->
+      <div style="position: relative; margin-bottom: 1rem;">
+        <input type="text" class="form-input-field" placeholder="Search messages" style="height: 38px; font-size: 0.88rem; padding-left: 2rem;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="position: absolute; left: 10px; top: 11px; color: var(--color-text-muted);"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+      </div>
+
+      <!-- Filter Chips -->
+      <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+        <button class="btn-primary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; border-radius: 9999px;">All</button>
+        <button class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; border-radius: 9999px;">Unread 2</button>
+        <button class="btn-secondary" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; border-radius: 9999px;">Archived</button>
+      </div>
+
+      <!-- Conversations List -->
+      <div style="display: flex; flex-direction: column; gap: 0.25rem;">
+        <!-- Convo 1 (Active) -->
+        <div class="convo-item active">
+          <div class="company-avatar" style="background: #155E4E; color: #FFFFFF; font-size: 0.95rem; flex-shrink: 0;">AL</div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 0.92rem;">Alyssa Lim</strong>
+              <span style="font-size: 0.75rem; color: var(--color-text-muted);">10:42</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 0.2rem;">Northstar Digital Labs</div>
+            <p style="font-size: 0.82rem; color: var(--color-text-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+              I've sent the interview details...
+            </p>
+          </div>
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; flex-shrink: 0;"></span>
+        </div>
+
+        <!-- Convo 2 -->
+        <div class="convo-item" onclick="alert('Conversation with Jonas Mercado loaded.')">
+          <div class="company-avatar" style="background: #E5E7EB; color: #374151; font-size: 0.95rem; flex-shrink: 0;">JM</div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 0.92rem;">Jonas Mercado</strong>
+              <span style="font-size: 0.75rem; color: var(--color-text-muted);">Tue</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 0.2rem;">Kubo Commerce</div>
+            <p style="font-size: 0.82rem; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+              Thanks for sharing your portfolio.
+            </p>
+          </div>
+          <span style="width: 8px; height: 8px; border-radius: 50%; background: #EF4444; flex-shrink: 0;"></span>
+        </div>
+
+        <!-- Convo 3 -->
+        <div class="convo-item" onclick="alert('Conversation with Rina Cruz loaded.')">
+          <div class="company-avatar" style="background: #E0F2FE; color: #0369A1; font-size: 0.95rem; flex-shrink: 0;">RC</div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 0.92rem;">Rina Cruz</strong>
+              <span style="font-size: 0.75rem; color: var(--color-text-muted);">Mon</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 0.2rem;">MayaWorks Studio</div>
+            <p style="font-size: 0.82rem; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+              Your application is now in review.
+            </p>
+          </div>
+        </div>
+
+        <!-- Convo 4 -->
+        <div class="convo-item" onclick="alert('Conversation with Danilo Ho loaded.')">
+          <div class="company-avatar" style="background: #FEF3C7; color: #B45309; font-size: 0.95rem; flex-shrink: 0;">DH</div>
+          <div style="flex: 1; min-width: 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="font-size: 0.92rem;">Danilo Ho</strong>
+              <span style="font-size: 0.75rem; color: var(--color-text-muted);">Sep 18</span>
+            </div>
+            <div style="font-size: 0.78rem; color: var(--color-text-muted); margin-bottom: 0.2rem;">Brightseed Foundation</div>
+            <p style="font-size: 0.82rem; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+              Would Thursday afternoon work?
+            </p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Column 2: Center Chat Thread -->
+    <main class="chat-pane">
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div style="display: flex; align-items: center; gap: 0.85rem;">
+          <div class="avatar-circle" style="background: #155E4E; color: #FFFFFF; font-weight: 700; width: 40px; height: 40px;">AL</div>
+          <div>
+            <div style="display: flex; align-items: center; gap: 0.4rem;">
+              <strong style="font-size: 1rem;">Alyssa Lim</strong>
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #10B981;" title="Online"></span>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--color-text-muted);">Early Careers Recruiter &middot; Northstar Digital Labs</span>
+          </div>
+        </div>
+
+        <button class="btn-ghost" onclick="alert('Chat options menu.')">•••</button>
+      </div>
+
+      <!-- Messages Feed -->
+      <div class="chat-messages-area" id="chatFeed">
+        <div style="text-align: center; margin: 0.5rem 0; font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">
+          Today
+        </div>
+
+        <!-- Recruiter Message 1 -->
+        <div class="bubble-received">
+          <p>Hi <span class="student-chat-name">there</span> — thanks for applying for our Product Design Internship. Your portfolio stood out to the team, especially the community transport case study.</p>
+          <span style="font-size: 0.72rem; color: var(--color-text-muted); display: block; margin-top: 0.4rem;">9:18 AM</span>
+        </div>
+
+        <!-- User Reply 1 -->
+        <div class="bubble-sent">
+          <p>Thank you, Alyssa! I'm glad the work resonated. I'd be happy to walk the team through my research and prototyping process.</p>
+          <div style="display: flex; justify-content: flex-end; align-items: center; gap: 0.3rem; font-size: 0.72rem; opacity: 0.85; margin-top: 0.4rem;">
+            <span>9:31 AM</span>
+            <span>✓✓</span>
+          </div>
+        </div>
+
+        <!-- Recruiter Message 2 -->
+        <div class="bubble-received">
+          <p>Wonderful. Are you available for a 30-minute portfolio conversation this Thursday at 2:30 PM? It will be with me and Marco, our product design lead.</p>
+          <span style="font-size: 0.72rem; color: var(--color-text-muted); display: block; margin-top: 0.4rem;">10:06 AM</span>
+        </div>
+
+        <!-- Recruiter Attachment Card -->
+        <div style="align-self: flex-start; max-width: 70%; background: #FFFFFF; border: 1px solid var(--color-border); border-radius: 12px; padding: 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; box-shadow: var(--shadow-sm);">
+          <div style="display: flex; align-items: center; gap: 0.75rem;">
+            <svg width="24" height="24" fill="none" stroke="var(--color-primary)" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+            <div>
+              <strong style="font-size: 0.88rem; display: block;">Portfolio interview details.pdf</strong>
+              <span style="font-size: 0.75rem; color: var(--color-text-muted);">PDF &middot; 184 KB</span>
+            </div>
+          </div>
+          <button class="btn-ghost" style="padding: 6px; border-radius: 50%;" title="Download" onclick="alert('Downloading interview details...')">
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </button>
+        </div>
+
+        <!-- User Reply 2 -->
+        <div class="bubble-sent">
+          <p>Thursday at 2:30 PM works perfectly. I'm looking forward to meeting you both.</p>
+          <div style="display: flex; justify-content: flex-end; align-items: center; gap: 0.3rem; font-size: 0.72rem; opacity: 0.85; margin-top: 0.4rem;">
+            <span>10:42 AM</span>
+            <span>✓✓</span>
+          </div>
+        </div>
+
+        <!-- Typing Indicator -->
+        <div style="font-size: 0.8rem; color: var(--color-text-muted); display: flex; align-items: center; gap: 0.4rem;">
+          <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--color-primary);"></span>
+          Alyssa is typing...
+        </div>
+      </div>
+
+      <!-- Image Attachment Preview Tray -->
+      <div id="chatAttachmentTray" style="display: none; padding: 0.65rem 1.25rem; background: #F3F4F6; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 0.85rem;">
+          <div style="position: relative; width: 44px; height: 44px; border-radius: 6px; overflow: hidden; border: 1px solid var(--color-border); background: white;">
+            <img id="chatAttachedThumb" src="" alt="Attachment preview" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          </div>
+          <div>
+            <div id="chatAttachedName" style="font-size: 0.85rem; font-weight: 600; color: var(--color-text-main); max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">sample_photo.jpg</div>
+            <div id="chatAttachedMeta" style="font-size: 0.74rem; color: var(--color-text-muted);">Picture attached &bull; Ready to send</div>
+          </div>
+        </div>
+        <button type="button" class="btn-ghost" onclick="clearChatAttachment()" style="color: #DC2626; font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.6rem; border-radius: var(--radius-sm); cursor: pointer;" title="Remove attachment">
+          &times; Remove
+        </button>
+      </div>
+
+      <!-- Hidden file input for picture attachment -->
+      <input type="file" id="chatAttachmentInput" accept="image/*" style="display: none;" onchange="handleChatFileSelect(event)">
+
+      <!-- Message Composer -->
+      <form class="chat-composer-bar" onsubmit="handleSendMessage(event)">
+        <button type="button" class="btn-ghost" style="padding: 8px; border-radius: 50%; cursor: pointer;" title="Attach picture" onclick="document.getElementById('chatAttachmentInput').click()">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+        </button>
+        <input type="text" class="composer-input" id="messageInput" placeholder="Write a message to Alyssa or attach a picture...">
+        <button type="submit" class="btn-primary" style="border-radius: 9999px; padding: 0.6rem 1.25rem; cursor: pointer;">
+          Send
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </form>
+    </main>
+
+    <!-- Column 3: Application Context Sidebar -->
+    <aside class="chat-context-pane">
+      <span style="font-size: 0.75rem; font-weight: 700; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 1rem;">
+        Application Context
+      </span>
+
+      <div style="background: #F9FAFB; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem;">
+        <span class="badge-paid" style="margin-bottom: 0.5rem;">Paid Internship</span>
+        <h4 style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 0.2rem;">Product Design Intern</h4>
+        <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1rem;">Northstar Digital Labs</p>
+
+        <div style="background: var(--color-amber-bg); border: 1px solid var(--color-amber-border); border-radius: var(--radius-sm); padding: 0.75rem; margin-bottom: 1rem;">
+          <span style="font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: var(--color-amber-text); display: block;">Interview Invited</span>
+          <strong style="font-size: 0.95rem; color: var(--color-amber-text);">Thursday &middot; 2:30 PM</strong>
+        </div>
+
+        <a href="details.html" class="btn-secondary" style="width: 100%; justify-content: center; font-size: 0.85rem;">
+          View application
+        </a>
+      </div>
+
+      <div style="font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.45;">
+        <strong>Typical response</strong><br>
+        Usually within a few hours.
+      </div>
+    </aside>
+  </div>
+
+  <!-- Lightbox Modal for Viewing Attached Pictures -->
+  <div id="imageModal" onclick="closeFullImage()" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; padding: 2rem; cursor: pointer;">
+    <div style="position: relative; max-width: 90vw; max-height: 90vh;">
+      <img id="imageModalImg" src="" style="max-width: 100%; max-height: 85vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); object-fit: contain;">
+      <div style="position: absolute; top: -2rem; right: 0; color: white; font-weight: 700; font-size: 1rem; cursor: pointer;">&times; Close preview</div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script>
+    let currentAttachment = null;
+
+    function handleChatFileSelect(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      if (!file.type.startsWith('image/')) {
+        alert('Please choose an image file (PNG, JPG, WEBP, GIF, SVG).');
+        return;
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        alert('Image is too large. Please select a picture under 10MB.');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        currentAttachment = {
+          dataUrl: e.target.result,
+          name: file.name,
+          size: (file.size / 1024).toFixed(1) + ' KB'
+        };
+
+        const tray = document.getElementById('chatAttachmentTray');
+        const thumb = document.getElementById('chatAttachedThumb');
+        const nameEl = document.getElementById('chatAttachedName');
+        const metaEl = document.getElementById('chatAttachedMeta');
+
+        if (tray && thumb && nameEl && metaEl) {
+          thumb.src = currentAttachment.dataUrl;
+          nameEl.innerText = currentAttachment.name;
+          metaEl.innerText = `${currentAttachment.size} • Attached picture ready to send`;
+          tray.style.display = 'flex';
+        }
+
+        document.getElementById('messageInput')?.focus();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearChatAttachment() {
+      currentAttachment = null;
+      const tray = document.getElementById('chatAttachmentTray');
+      if (tray) tray.style.display = 'none';
+      const input = document.getElementById('chatAttachmentInput');
+      if (input) input.value = '';
+    }
+
+    function handleSendMessage(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('messageInput');
+      const text = input ? input.value.trim() : '';
+
+      if (!text && !currentAttachment) {
+        return;
+      }
+
+      const chatFeed = document.getElementById('chatFeed');
+      const newBubble = document.createElement('div');
+      newBubble.className = 'bubble-sent';
+
+      let innerContent = '';
+      if (currentAttachment) {
+        innerContent += `
+          <div style="margin-bottom: ${text ? '0.5rem' : '0.2rem'};">
+            <img src="${currentAttachment.dataUrl}" alt="${currentAttachment.name}" class="chat-attachment-img" style="max-width: 100%; max-height: 240px; border-radius: 8px; display: block; object-fit: cover; cursor: pointer; border: 1px solid rgba(255,255,255,0.25);" onclick="openFullImage(this.src)" title="Click to view full image">
+            <span style="font-size: 0.72rem; opacity: 0.85; display: block; margin-top: 0.3rem;">${escapeHtml(currentAttachment.name)}</span>
+          </div>
+        `;
+      }
+
+      if (text) {
+        innerContent += `<p style="margin: 0; word-break: break-word;">${escapeHtml(text)}</p>`;
+      }
+
+      innerContent += `
+        <div style="display: flex; justify-content: flex-end; align-items: center; gap: 0.3rem; font-size: 0.72rem; opacity: 0.85; margin-top: 0.4rem;">
+          <span>Just now</span>
+          <span>✓</span>
+        </div>
+      `;
+
+      newBubble.innerHTML = innerContent;
+      chatFeed.appendChild(newBubble);
+      chatFeed.scrollTop = chatFeed.scrollHeight;
+
+      // Clear text input and pending attachment
+      if (input) input.value = '';
+      const hadAttachment = !!currentAttachment;
+      clearChatAttachment();
+
+      // Recruiter automated acknowledgement
+      if (hadAttachment) {
+        setTimeout(() => {
+          const recruiterReply = document.createElement('div');
+          recruiterReply.className = 'bubble-received';
+          recruiterReply.innerHTML = `
+            <p>Thanks for sending this picture! I've received the image and added it to your application portfolio.</p>
+            <span style="font-size: 0.72rem; color: var(--color-text-muted); display: block; margin-top: 0.4rem;">Just now</span>
+          `;
+          chatFeed.appendChild(recruiterReply);
+          chatFeed.scrollTop = chatFeed.scrollHeight;
+        }, 1200);
+      }
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function openFullImage(src) {
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('imageModalImg');
+      if (modal && modalImg) {
+        modalImg.src = src;
+        modal.style.display = 'flex';
+      }
+    }
+
+    function closeFullImage() {
+      const modal = document.getElementById('imageModal');
+      if (modal) modal.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
